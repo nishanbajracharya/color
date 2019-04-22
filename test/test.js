@@ -1,11 +1,23 @@
 const expect = require('chai').expect;
-const assert = require('chai').assert;
 
-const Color = require('../index');
+const Color = require('../');
 
 describe('Static methods', function() {
   it('Should return a random color', function() {
     const color = Color.getRandom();
-    assert.isString(color);
+
+    expect().to.satisfy(function() {
+      return Color.isHex(color);
+    });
+  });
+});
+
+describe('Color Getter', function() {
+  it('Should return color in Hex form', function() {
+    const color = new Color('#FFFFFF');
+
+    expect().to.satisfy(function() {
+      return Color.isHex(color.hex());
+    });
   });
 });
