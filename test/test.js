@@ -1,7 +1,11 @@
 const expect = require('chai').expect;
+const assert = require('chai').assert;
 
-describe('Test Stub', function() {
-  it('Should return true', function() {
-    expect(true).to.equal(true);
+const Color = require('../index');
+
+describe('Static methods', function() {
+  it('Should return a random color', function() {
+    const color = Color.getRandom();
+    assert.isString(color);
   });
 });
