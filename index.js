@@ -7,13 +7,22 @@ const TYPES = {
   STRING: 'string',
 };
 
+const REGEX = {
+  HEX: /^#(?:([0-9a-fA-F]{6})|([0-9a-fA-F]{3}))/,
+  RGB: /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/,
+  RGBA: /^rgba\((\d+),\s*(\d+),\s*(\d+),\s*(\d?\.?\d+)\)$/,
+};
+
 function isHex(color) {
-  if (color.substr(0, 1) !== '#') return false;
+  return color.match(REGEX.HEX);
+}
 
-  const numbers = color.substr(1);
-  const parsed = parseInt(numbers, 16);
+function isRGB(color) {
+  return color.match(REGEX.RGB);
+}
 
-  return parsed.toString(16) === numbers.toLowerCase();
+function isRGBA(color) {
+  return color.match(REGEX.RGBA);
 }
 
 class Color {
@@ -34,3 +43,5 @@ class Color {
 module.exports = Color;
 
 module.exports.isHex = isHex;
+module.exports.isRGB = isRGB;
+module.exports.isRGBA = isRGBA;
